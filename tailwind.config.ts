@@ -26,6 +26,9 @@ const config: Config = {
         },
       },
     },
+    backgroundImage: {
+      'gigle': "url('/img/1.png')",
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 };

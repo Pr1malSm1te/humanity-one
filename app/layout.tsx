@@ -1,14 +1,10 @@
 import '@/app/ui/global.css';
-import { inter } from '@/app/ui/fonts';
+import { roboto } from '@/app/ui/fonts';
  
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({children}: {children: React.ReactNode;}) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${roboto.className} bg-black antialiased container-snap`}>{children}</body>
     </html>
   );
 }

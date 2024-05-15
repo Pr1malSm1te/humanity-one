@@ -1,41 +1,64 @@
-import AcmeLogo from '@/app/ui/acme-logo';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import H0Logo from '@/app/ui/topnavbar/h0-logo';
 import Link from 'next/link';
-import styles from '@/app/ui/home.module.css';
-import Image from 'next/image';
+import Section from '@/app/components/section'
 
 export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col p-6">
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
-        { <AcmeLogo /> }
+    <main>
+      <div className='flex w-fit flex-row pt-8 md:px-2 md:space-x-10 text-white'>
+        <Link
+        className="mb-2 flex h-10 items-center justify-start p-4"
+        href="/">
+          <H0Logo />
+        </Link>
       </div>
-      <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
-          <div className={styles.shape} />
-
-          <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Acme.</strong> This is the example for the{' '}
-            <a href="https://nextjs.org/learn/" className="text-blue-500">
-              Next.js Learn Course
-            </a>
-            , brought to you by Vercel.
-          </p>
-          <Link
-            href="/login"
-            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
-          >
-            <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
-          </Link>
+      <div className="flex-grow p-2 pb-0 md:overflow-y-auto text-white pt-4">
+        <div className="grid grid-cols-4 gap-6 p-2 pb-4">
+          <Link href="/archetypes" className="text-white text-2xl p-10 text-center bg-slate-900 mt-4 rounded-lg hover:bg-slate-700 hover:text-blue-600">Архетипы</Link>
+          <Link href="/moves"      className="text-white text-2xl p-10 text-center bg-slate-900 mt-4 rounded-lg hover:bg-slate-700 hover:text-blue-600">Ходы</Link>
+          <Link href="/equipment"  className="text-white text-2xl p-10 text-center bg-slate-900 mt-4 rounded-lg hover:bg-slate-700 hover:text-blue-600">Снаряжение</Link>
+          <Link href="/zero"       className="text-white text-2xl p-10 text-center bg-slate-900 mt-4 rounded-lg hover:bg-slate-700 hover:text-blue-600">ZER0</Link>
         </div>
-        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          { <Image
-            src="/hero-desktop.png"
-            width={1000}
-            height={760}
-            className="hidden md:block"
-            alt="Screenshots of the dashboard project showing desktop version"
-          />}
+        <div className=' bg-slate-950 p-5 rounded-lg text-white'>
+          <Section heading='ОБ ИГРЕ'>
+              <p>
+              <b>Humanity Zero</b> — это настольная ролевая игра 
+              в жанре киберпанк. Это мир, в котором человеческая жизнь давно перешла в область легкодоступных ресурсов, корпоративная хватка 
+              взяла за горло общественную мораль и денежные 
+              активы, а шагнувшие далеко вперёд технологии 
+              лишь продолжают развращать человеческое Я. 
+              </p>
+              <p>
+              Игра создана для того, чтобы задавать вопросы, на которые нет правильных ответов, 
+              заставлять делать сложные выборы, при этом 
+              поднимая остросоциальные проблемы: деградацию морали общества, экзистенциальный кризис, коррумпированность власти, загрязнение 
+              окружающей среды, безработицу, кровопролитные войны за крохи ресурсов. В <b>Humanity Zero </b> 
+              всё это постепенно доходит до своего апогея.
+              </p>
+              <p>
+              Игроки возьмут на себя роль людей, чьи судьбы 
+              переплетаются по тем или иным причинам. Они 
+              могут быть наёмниками, работать в органах 
+              власти или на корпорацию, служить одной из 
+              криминальных семей, но в какой-то момент их 
+              жизнь резко меняется. У них не остаётся выбора, кроме как объединиться и действовать 
+              сообща, пока они полезны друг другу — лишь 
+              до этих пор. Это игра не про героев. Это игра 
+              про людей, которые хотят выжить в холодном, 
+              мрачном и высокотехнологичном будущем. На 
+              пути у них будут стоять не только вооружённые силы корпораций и обезумевшие уличные 
+              панки, но и ужасы, что скрывает океан матричной информации, а также их собственные 
+              искалеченные души. Им придётся заплатить 
+              дорогую цену. Цену куда более весомую, чем 
+              человеческая жизнь.
+              </p>
+              <p>
+              Humanity Zero — это игра на основе <b>Powered 
+              by the Apocalypse (или хак *W)</b> в жанре киберпанк, поддерживающая все вытекающие темы: 
+              нео-нуарный детектив, боевик, трансгуманизм, 
+              драму, триллер
+              </p>
+          </Section>
         </div>
       </div>
     </main>
