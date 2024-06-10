@@ -1,12 +1,19 @@
-import Link from "next/link";
 import Section from "@/app/components/section";
 import Collapsible from "@/app/components/collapsible";
+import AugGenerator from "@/app/components/AugGenerator";
+import { executeTagsCrudOperations } from "@/app/lib/tags";
 
-export default function Page() {
+export default async function Page() {
     return (
       <div className="bg-slate-950 p-5 rounded-lg text-white">        
     <h1 className="text-6xl flex text-white mb-5">Augmentations</h1>
-    <Section heading="ПРАВИЛА СОЗДАНИЯ">
+    <Section heading="СЛУЧАЙНОЕ СОЗДАНИЕ">
+      <AugGenerator 
+      postags={JSON.parse(JSON.stringify(await executeTagsCrudOperations(1)))}
+      negtags={JSON.parse(JSON.stringify(await executeTagsCrudOperations(2)))}
+      ></AugGenerator>
+    </Section>
+    <Section heading="ПРАВИЛА СОЗДАНИЯ" className="mt-4">
       <p> 
         подавляющем большинстве произведений в жанре киберпанк люди пользуются достижениями 
         имплантологии и робототехники, улучшая своё 
@@ -142,6 +149,7 @@ export default function Page() {
         </div>
       </Collapsible>
       <Collapsible label="Руки" openByDefault={false} duration={300} textSize="2xl" className="bg-slate-900 rounded-lg p-5 text-white">
+      <div className="p-5 rounded-lg mt-5">
       <table className="table-auto border-collapse w-full border-spacing-y-4">
             <thead>
               <tr>
@@ -172,8 +180,10 @@ export default function Page() {
               </tr>
             </tbody>
         </table>
+        </div>
       </Collapsible>
       <Collapsible label="Ноги" openByDefault={false} duration={300} textSize="2xl" className="bg-slate-900 rounded-lg p-5 text-white">
+      <div className="p-5 rounded-lg mt-5">
       <table className="table-auto border-collapse w-full border-spacing-y-4">
             <thead>
               <tr>
@@ -204,6 +214,7 @@ export default function Page() {
               </tr>
             </tbody>
         </table>
+        </div>
       </Collapsible>
       <Collapsible label="Негативные теги" openByDefault={false} duration={300} textSize="2xl" className="bg-slate-900 rounded-lg p-5 text-white">
         <Section heading="ПРИЧИНА НЕГАТИВНЫХ ТЕГОВ" className="mt-4">

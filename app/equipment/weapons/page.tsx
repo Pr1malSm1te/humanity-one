@@ -1,11 +1,19 @@
 import Link from "next/link";
 import Section from "@/app/components/section";
 import Collapsible from "@/app/components/collapsible";
+import { executeTagsCrudOperations } from "@/app/lib/tags";
+import WeaponGenerator from "@/app/components/WeaponGenerator";
 
-export default function Page() {
+export default async function Page() {
     return (
       <div className="bg-slate-950 p-5 rounded-lg text-white">        
     <h1 className="text-6xl flex text-white mb-5">Weapons</h1>
+    <Section heading="СЛУЧАЙНОЕ СОЗДАНИЕ">
+      <WeaponGenerator 
+      postags={JSON.parse(JSON.stringify(await executeTagsCrudOperations(3)))}
+      negtags={JSON.parse(JSON.stringify(await executeTagsCrudOperations(4)))}
+      ></WeaponGenerator>
+    </Section>
     <Section heading="ПРАВИЛА СОЗДАНИЯ">
       <p> 
       В мире мрачного будущего у людей существует 
