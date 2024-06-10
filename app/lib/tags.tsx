@@ -1,4 +1,5 @@
-import { MongoClient, ObjectId } from 'mongodb';
+import { Collection, MongoClient, ObjectId } from 'mongodb';
+import { isUndefined } from 'util';
 
 export interface Tag{
     _id: ObjectId;
@@ -19,7 +20,7 @@ interface Aug{
     tags: string[]
 }
 
-export async function connectToCluster(uri) {
+export async function connectToCluster(uri: string) {
     let mongoClient;
 
     try {
@@ -37,46 +38,47 @@ export async function connectToCluster(uri) {
 
 export async function executeTagsCrudOperations(type: number) {
     const uri = process.env.MONGODB_URI;
-    let mongoClient;
-    try {
-        mongoClient = await connectToCluster(uri);
-        const db = mongoClient.db('humanity');
-        const collection = db.collection('tags');
-        switch (type) {
-            case 1:
-                return await findTagsByTypeNotNeg(collection, 'aug');
-                break;
-            case 2:
-                return await findTagsByTypeNegTags(collection, 'aug');
-                break;
-            case 3:
-                return await findTagsByTypeNotNeg(collection, 'weapon');
-                break;
-            case 4:
-                return await findTagsByTypeNegTags(collection, 'weapon');
-                break;
+    if(uri !== undefined){
+        let mongoClient = await connectToCluster(uri);
+        try {
+            const db = mongoClient.db('humanity');
+            const collection = db.collection('tags');
+            switch (type) {
+                case 1:
+                    return await findTagsByTypeNotNeg(collection, 'aug');
+                    break;
+                case 2:
+                    return await findTagsByTypeNegTags(collection, 'aug');
+                    break;
+                case 3:
+                    return await findTagsByTypeNotNeg(collection, 'weapon');
+                    break;
+                case 4:
+                    return await findTagsByTypeNegTags(collection, 'weapon');
+                    break;
+            }
+        } finally {
+            await mongoClient.close();
         }
-    } finally {
-        await mongoClient.close();
     }
 }
 
-export async function findTagsByName(collection, tag) {
+export async function findTagsByName(collection : Collection<Document>, tag : string) {
     return collection.find({ 'tag': tag }).toArray();
 }
 
-export async function findTagsByType(collection, tag) {
+export async function findTagsByType(collection : Collection<Document>, tag : string) {
     return collection.find({ 'type': tag }).toArray();
 }
 
-export async function findTagsBy2Types(collection, tag1, tag2) {
+export async function findTagsBy2Types(collection : Collection<Document>, tag1 : string, tag2 : string) {
     return collection.find({ '$and' : [{'type': tag1},{'type': tag2}]}).toArray();
 }
 
-export async function findTagsByTypeNegTags(collection, tag) {
+export async function findTagsByTypeNegTags(collection : Collection<Document>, tag : string) {
     return collection.find({ '$and' : [{'type': tag},{'type': 'neg'}]}).toArray();
 }
 
-export async function findTagsByTypeNotNeg(collection, tag) {
+export async function findTagsByTypeNotNeg(collection : Collection<Document>, tag : string) {
     return collection.find({ '$and' : [{'type' : tag }, {'type' : {'$nin':['neg']}}]}).toArray();
 }
