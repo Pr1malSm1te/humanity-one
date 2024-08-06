@@ -1,9 +1,7 @@
-import Link from "next/link";
 import Section from "@/app/components/section";
 import Collapsible from "@/app/components/collapsible";
 import { executeTagsCrudOperations } from "@/app/lib/tags";
 import WeaponGenerator from "@/app/components/WeaponGenerator";
-
 export default async function Page() {
     return (
       <div className="bg-slate-950 p-5 rounded-lg text-white">        
@@ -53,16 +51,16 @@ export default async function Page() {
               <td className="border border-slate-600 p-2">Игнорирует 1 ед. брони противника.</td>
               </tr>
               <tr>
-              <td className="border border-slate-600 p-2">БРОНЕБОЙНЫЙ</td>
-              <td className="border border-slate-600 p-2">+ Игнорирует 2 ед. брони противника (необходимо иметь тег Бронебойный).</td>
+              <td className="border border-slate-600 p-2">БРОНЕБОЙНЫЙ +</td>
+              <td className="border border-slate-600 p-2">Игнорирует 2 ед. брони противника (необходимо иметь тег Бронебойный).</td>
               </tr>
               <tr>
               <td className="border border-slate-600 p-2">ЗАЗУБРЕННОЕ</td>
               <td className="border border-slate-600 p-2">При попадании на 15+ уничтожает у цели 1 ед. брони.</td>
               </tr>
               <tr>
-              <td className="border border-slate-600 p-2">ЗАЗУБРЕННОЕ</td>
-              <td className="border border-slate-600 p-2">+ При попадании на 15+ уничтожает у цели 2 ед. брони (необходимо иметь тег Зазубренное).</td>
+              <td className="border border-slate-600 p-2">ЗАЗУБРЕННОЕ +</td>
+              <td className="border border-slate-600 p-2">При попадании на 15+ уничтожает у цели 2 ед. брони (необходимо иметь тег Зазубренное).</td>
               </tr>
               <tr>
               <td className="border border-slate-600 p-2">ИНСТРУМЕНТ</td>

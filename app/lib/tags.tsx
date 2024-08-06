@@ -1,5 +1,4 @@
 import { Collection, MongoClient, ObjectId } from 'mongodb';
-import { isUndefined } from 'util';
 
 export interface Tag{
     _id: ObjectId;
@@ -22,7 +21,6 @@ interface Aug{
 
 export async function connectToCluster(uri: string) {
     let mongoClient;
-
     try {
         mongoClient = new MongoClient(uri);
         console.log('Connecting to MongoDB...');
@@ -42,7 +40,7 @@ export async function executeTagsCrudOperations(type: number) {
         let mongoClient = await connectToCluster(uri);
         try {
             const db = mongoClient.db('humanity');
-            const collection = db.collection('tags');
+            const collection : Collection<Document>= db.collection('tags');
             switch (type) {
                 case 1:
                     return await findTagsByTypeNotNeg(collection, 'aug');

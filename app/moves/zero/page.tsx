@@ -71,7 +71,7 @@ return (
         </div>
     </Collapsible>
     <Collapsible label="ZER0 : Ходы NPC" openByDefault={false} duration={300} textSize="2xl" className="bg-slate-900 rounded-lg p-5 text-white">
-        <div className="p-5 rounded-lg grid grid-rows-3 gap-5 mt-5">
+        <div className="p-5 rounded-lg flex flex-col gap-5 mt-5">
           <Collapsible label="ГРУППИРОВКИ" openByDefault={false} duration={300} textSize="2xl" className="bg-slate-800 rounded-lg p-5 text-white">
             <div className="p-5 rounded-lg grid grid-cols-3 gap-5 mt-5">
               <Section heading="ЗАДАЧИ">
